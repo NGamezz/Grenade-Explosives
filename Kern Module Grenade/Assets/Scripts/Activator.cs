@@ -1,19 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Activator : MonoBehaviour
 {
-
-    [SerializeField] private UnityEvent onStartTimer;
-
-    void Start()
-    {
-        onStartTimer?.Invoke();
-    }
-
-    public void Explode()
+    public void OnStart()
     {
         IBomb bomb = new Bomb(50);
 

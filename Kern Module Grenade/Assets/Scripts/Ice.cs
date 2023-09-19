@@ -8,11 +8,15 @@ public class Ice : BombDecorator
     {
     }
 
-    public override IBomb Decorate(IBomb bomb)
+    public override void Decorate(IBomb bomb)
     {
         Debug.Log("Add Ice Damage.");
-        bomb.DamageTypes |= DamageType.Ice;
+
+        if (!bomb.DamageTypes.Contains(DamageType.Ice))
+        {
+            bomb.DamageTypes.Add(DamageType.Ice);
+        }
+
         bomb.Damage += Damage;
-        return bomb;
     }
 }

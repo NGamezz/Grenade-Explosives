@@ -8,11 +8,15 @@ public class Fire : BombDecorator
     {
     }
 
-    public override IBomb Decorate(IBomb bomb)
+    public override void Decorate(IBomb bomb)
     {
         Debug.Log("Add Fire Damage.");
-        bomb.DamageTypes |= DamageType.Fire;
+
+        if (!bomb.DamageTypes.Contains(DamageType.Fire))
+        {
+            bomb.DamageTypes.Add(DamageType.Fire);
+        }
+
         bomb.Damage += Damage;
-        return bomb;
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,16 +16,21 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void StartTimer()
+    public void ByPassTimer()
     {
-        StartCoroutine(StartTimerCountDown());
+        OnEnd?.Invoke();
+        StopAllCoroutines();
     }
 
-    private IEnumerator StartTimerCountDown()
+    public void StartTimer()
+    {
+        StartCoroutine(StartTimerCount());
+    }
+
+    private IEnumerator StartTimerCount()
     {
         yield return new WaitForSeconds(Duration);
 
-        Debug.Log("Timer Finished");
         OnEnd?.Invoke();
     }
 }

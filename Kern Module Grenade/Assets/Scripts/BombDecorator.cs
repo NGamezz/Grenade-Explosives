@@ -11,5 +11,5 @@ public abstract class BombDecorator
         Damage = damage;
     }
 
-    public abstract IBomb Decorate(IBomb bomb);
+    public abstract void Decorate(IBomb bomb);
 }
