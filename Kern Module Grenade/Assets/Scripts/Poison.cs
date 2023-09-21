@@ -1,17 +1,19 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Ice : BombDecorator
+public class Poison : BombDecorator
 {
-    public Ice(float damage) : base(damage)
+    public Poison(float damage) : base(damage)
     {
     }
 
     public override void Decorate(IBomb bomb, ref Action triggerEvent)
     {
-        if (!bomb.DamageTypes.Contains(DamageType.Ice))
+        if (!bomb.DamageTypes.Contains(DamageType.Poison))
         {
-            bomb.DamageTypes.Add(DamageType.Ice);
+            bomb.DamageTypes.Add(DamageType.Poison);
         }
 
         triggerEvent += ActivateEffect;

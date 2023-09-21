@@ -1,19 +1,22 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Activator : MonoBehaviour
 {
+    [SerializeField] BombElementsData bombsElementsData;
+
     public void OnStart()
     {
-        IBomb bomb = new Bomb(50);
+        BombDecorator[] decorators = GetComponents<BombDecorator>();
+        Bomb bomb = new(5.0f);
 
-        Fire fireDecorator = new Fire(10);
-
-        fireDecorator.Decorate(bomb);
-
-        Ice iceDecorator = new Ice(5);
-
-        iceDecorator.Decorate(bomb);
+        foreach (BombDecorator decorator in decorators)
+        {
+            decorator.Decorate(bomb, ref bomb.TriggerEvent);
+        }
 
         bomb.Explode();
+        Destroy(gameObject);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +9,19 @@ public class Fire : BombDecorator
     {
     }
 
-    public override void Decorate(IBomb bomb)
+    public override void Decorate(IBomb bomb, ref Action triggerEvent)
     {
-        Debug.Log("Add Fire Damage.");
-
-        if (!bomb.DamageTypes.Contains(DamageType.Fire))
+        if (!bomb.DamageTypes.Contains(damageType))
         {
-            bomb.DamageTypes.Add(DamageType.Fire);
+            bomb.DamageTypes.Add(damageType);
         }
 
+        triggerEvent += ActivateEffect;
         bomb.Damage += Damage;
+    }
+
+    protected override void ActivateEffect()
+    {
+        Debug.Log($"{damageType} effect activated.");
     }
 }

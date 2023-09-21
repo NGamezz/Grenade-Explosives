@@ -9,16 +9,12 @@ public interface IBomb
     public void Explode();
 }
 
-public enum DamageType
-{
-    Normal = 0,
-    Fire = 1,
-    Ice = 2,
-}
-
 public class Bomb : IBomb
 {
     public float Damage { get; set; }
+
+    public Action TriggerEvent = null;
+
     public List<DamageType> DamageTypes { get; set; } = new List<DamageType>();
 
     public Bomb(float damage)
@@ -30,5 +26,7 @@ public class Bomb : IBomb
     public void Explode()
     {
         Debug.Log($"Deal {Damage} Damage [{string.Join(",", DamageTypes)}]");
+        TriggerEvent?.Invoke();
+        TriggerEvent = null;
     }
 }

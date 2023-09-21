@@ -24,6 +24,7 @@ public class Timer : MonoBehaviour
 
     public void StartTimer()
     {
+        StopAllCoroutines();
         StartCoroutine(StartTimerCount());
     }
 
@@ -31,6 +32,7 @@ public class Timer : MonoBehaviour
     {
         yield return new WaitForSeconds(Duration);
 
+        Debug.Log("Timer Finished.");
         OnEnd?.Invoke();
     }
 }
